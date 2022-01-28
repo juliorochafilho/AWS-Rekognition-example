@@ -1,0 +1,14 @@
+{
+  "name": "faceid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julio Rocha",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1065.0"
+  }
+}
