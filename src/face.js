@@ -1,8 +1,8 @@
 const AWS = require("aws-sdk");
 
-const savephoto = async (req, res) => {
+const searchfacesbyimage = async (req, res) => {
   try {
-    console.log(" Saving photo");
+    console.log(" Comparing ");
 
     AWS.config.update({
       region: "us-east-1",
@@ -12,27 +12,27 @@ const savephoto = async (req, res) => {
 
     var params = {
       CollectionId: "test",
-      DetectionAttributes: [],
-      ExternalImageId: "myphotoid", // Todo
+      FaceMatchThreshold: 70,
       Image: {
         S3Object: {
           Bucket: "face-comparing-test",
-          Name: "faceid1.jfif",
+          Name: "faceid4.jfif",
         },
       },
+      MaxFaces: 1,
     };
-
-    const indexFace = rekognition.indexFaces(params, function (err, data) {
+    
+    rekognition.searchFacesByImage(params, function (err, data) {
       if (err) return res.status(500).json(err, err.stack);
       // an error occurred
-      else return res.status(200).json(data) // successful response
+      else return res.status(200).json(data); // successful response
     });
 
-    return res.status(301)
+    return res.status(301);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
   }
 };
 
-module.exports = savephoto;
+module.exports = searchfacesbyimage;
